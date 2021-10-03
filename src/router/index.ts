@@ -1,29 +1,56 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Index",
+    component: () => import("@/views/Index.vue"),
+    meta: {
+      icon: "mdi-home"
+    }
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: "/sample1",
+    name: "Sample1",
+    component: () => import("@/views/sample1/Index.vue"),
+    meta: {
+      icon: "mdi-numeric-1-box-multiple-outline"
+    }
+  },
+  {
+    path: "/sample2",
+    name: "Sample2",
+    component: () => import("@/views/sample2/Index.vue"),
+    meta: {
+      icon: "mdi-numeric-2-box-multiple-outline"
+    }
+  },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: process.env.VUE_APP_ROUTER_MODE || "history",
   base: process.env.BASE_URL,
   routes
 })
+
+interface Navigation {
+  title: string | undefined
+  icon: string
+  to: string
+}
+
+export function getItems(): Array<Navigation> {
+  return routes.map(route => {
+    const nav: Navigation = {
+      title: route.name,
+      icon: route.meta ? route.meta.icon : "mdi-vector-link",
+      to: route.path
+    }
+    return nav
+  })
+}
 
 export default router
