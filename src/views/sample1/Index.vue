@@ -4,15 +4,33 @@
       <v-col cols="12">
         <v-carousel :show-arrows="false" height="100%">
           <v-carousel-item>
-            <v-card width="100%" color="grey">
-              <v-card-text></v-card-text>
-              <v-card-actions class="justify-center">
-                <v-icon>mdi-comment-text</v-icon>
+            <v-card height="100%" width="100%">
+              <v-card-text class="grey" style="height: 90%"></v-card-text>
+              <v-divider />
+              <v-card-actions class="justify-center" style="height: 10%">
+                <v-icon>mdi-comment</v-icon>
               </v-card-actions>
             </v-card>
           </v-carousel-item>
           <v-carousel-item>
-            <v-card height="100%" width="100%" color="success"></v-card>
+            <v-card height="100%" width="100%">
+              <v-card-text class="warning" style="height: 90%"></v-card-text>
+              <v-divider />
+              <v-card-actions class="justify-space-around" style="height: 10%">
+                <v-btn icon>
+                  <v-icon>mdi-home</v-icon>
+                </v-btn>
+                <v-btn icon>
+                  <v-icon>mdi-at</v-icon>
+                </v-btn>
+                <v-btn icon>
+                  <v-icon>mdi-bell</v-icon>
+                </v-btn>
+                <v-btn icon>
+                  <v-icon>mdi-text-box-search</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
           </v-carousel-item>
         </v-carousel>
       </v-col>
@@ -48,5 +66,12 @@ export default Container.extend({
       height: inherit;
     }
   }
+}
+.v-carousel ::v-deep .v-carousel__item {
+  height: calc(100% - 50px) !important;
+} 
+.v-carousel ::v-deep .v-carousel__controls {
+  position: fixed;
+  bottom: 0px;
 }
 </style>

@@ -1,9 +1,6 @@
 import Vue from "vue";
 
 export default Vue.mixin({
-  created() {
-    console.debug("Container mixin!")
-  },
   computed: {
     containerStyle: {
       get () {

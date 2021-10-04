@@ -6,6 +6,8 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
+// document.body.style.height = `${window.innerHeight}px`
+
 new Vue({
   router,
   store,

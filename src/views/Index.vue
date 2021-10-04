@@ -8,7 +8,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "sample2-index",
+  name: "index",
   mixins: [],
   props: {},
   data: () => ({}),

@@ -7,7 +7,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "Index",
-    component: () => import("@/views/Index.vue"),
+    component: () => import("@/views/index.vue"),
     meta: {
       icon: "mdi-home"
     }
@@ -15,7 +15,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/sample1",
     name: "Sample1",
-    component: () => import("@/views/sample1/Index.vue"),
+    component: () => import("@/views/sample1/index.vue"),
     meta: {
       icon: "mdi-numeric-1-box-multiple-outline"
     }
@@ -23,9 +23,17 @@ const routes: Array<RouteConfig> = [
   {
     path: "/sample2",
     name: "Sample2",
-    component: () => import("@/views/sample2/Index.vue"),
+    component: () => import("@/views/sample2/index.vue"),
     meta: {
       icon: "mdi-numeric-2-box-multiple-outline"
+    }
+  },
+  {
+    path: "/sample3",
+    name: "Sample3",
+    component: () => import("@/views/sample3/index.vue"),
+    meta: {
+      icon: "mdi-numeric-3-box-multiple-outline"
     }
   },
 ]
