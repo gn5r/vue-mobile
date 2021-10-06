@@ -39,9 +39,9 @@
 </template>
 
 <script lang="ts">
-import Container from "@/mixins/mobile";
+import Mobile from "@/mixins/mobile";
 
-export default Container.extend({
+export default Mobile.extend({
   name: "sample1-index",
   mixins: [],
   props: {},

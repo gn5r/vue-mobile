@@ -6,11 +6,7 @@ Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Index",
-    component: () => import("@/views/index.vue"),
-    meta: {
-      icon: "mdi-home"
-    }
+    redirect: "/sample1"
   },
   {
     path: "/sample1",
@@ -51,7 +47,7 @@ interface Navigation {
 }
 
 export function getItems(): Array<Navigation> {
-  return routes.map(route => {
+  return routes.filter(route => route.name).map(route => {
     const nav: Navigation = {
       title: route.name,
       icon: route.meta ? route.meta.icon : "mdi-vector-link",

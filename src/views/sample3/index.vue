@@ -1,28 +1,8 @@
 <template>
-  <div>
-    <v-tabs v-model="tab" icons-and-text center-active>
-      <v-tabs-slider color="yellow" />
-      <v-tab href="#home">
-        Home
-        <v-icon>mdi-home</v-icon>
-      </v-tab>
-      <v-tab href="#mention">
-        Mention
-        <v-icon>mdi-at</v-icon>
-      </v-tab>
-      <v-tab href="#notification">
-        Notification
-        <v-icon>mdi-bell</v-icon>
-      </v-tab>
-      <v-tab href="#search">
-        Search
-        <v-icon>mdi-text-box-search</v-icon>
-      </v-tab>
-    </v-tabs>
-
+  <v-card>
     <v-tabs-items v-model="tab">
       <v-tab-item value="home">
-        <v-container fluid :style="containerStyle">
+        <v-container fluid :style="containerStyle" >
           <home />
         </v-container>
       </v-tab-item>
@@ -42,13 +22,36 @@
         </v-container>
       </v-tab-item>
     </v-tabs-items>
-  </div>
+
+    <v-divider />
+
+    <v-card-actions class="pa-0">
+      <v-tabs v-model="tab" icons-and-text centered center-active hide-slider>
+        <v-tab href="#home">
+          ホーム
+          <v-icon>mdi-home</v-icon>
+        </v-tab>
+        <v-tab href="#mention">
+          メンション
+          <v-icon>mdi-at</v-icon>
+        </v-tab>
+        <v-tab href="#notification">
+          通知
+          <v-icon>mdi-bell</v-icon>
+        </v-tab>
+        <v-tab href="#search">
+          検索
+          <v-icon>mdi-text-box-search</v-icon>
+        </v-tab>
+      </v-tabs>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Mobile from "@/mixins/mobile.ts";
 
-export default Vue.extend({
+export default Mobile.extend({
   name: "sample3-index",
   mixins: [],
   props: {},
@@ -62,10 +65,11 @@ export default Vue.extend({
   computed: {
     containerStyle: {
       get() {
-        const innerHeight = `${window.innerHeight}px`;
+        const innerHeight = `${this.innerHeight}px`;
         return {
           // ヘッダ - タブバー
-          height: `calc(${innerHeight} - 48px - 72px)`,
+          height: `calc(${innerHeight} - 48px - 56px)`,
+          padding: "0px",
         };
       },
     },
@@ -80,5 +84,19 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.v-tabs {
+  height: 56px;
+}
+.v-tabs ::v-deep .v-tabs-bar {
+  height: inherit;
+}
+.v-tab {
+  padding: 0px;
+  width: 48px;
+}
+.v-tabs ::v-deep .v-slider-group__prev,
+.v-tabs ::v-deep .v-slider-group__next {
+  display: none;
+}
 </style>
