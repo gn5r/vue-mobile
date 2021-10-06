@@ -1,0 +1,6 @@
+.v-card__actions .v-icon--active {
+  color: inherit;
+}
+.v-card__actions .v-icon:not(.v-icon--active) {
+  color: rgba(0, 0, 0, 0.54) !important;
+}

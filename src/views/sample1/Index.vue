@@ -14,21 +14,37 @@
           </v-carousel-item>
           <v-carousel-item>
             <v-card height="100%" width="100%">
-              <v-card-text class="warning" style="height: 90%"></v-card-text>
+              <v-card-text class="pa-0" style="height: 90%">
+                <v-container fluid style="height: 100%">
+                  <component :is="content" />
+                </v-container>
+              </v-card-text>
               <v-divider />
               <v-card-actions class="justify-space-around" style="height: 10%">
-                <v-btn icon>
-                  <v-icon>mdi-home</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-at</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-bell</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-text-box-search</v-icon>
-                </v-btn>
+                <v-icon
+                  :class="{ 'v-icon--active': content == 'home' ? true : false }"
+                  color="primary"
+                  @click="changeContent('home')"
+                  >mdi-home</v-icon
+                >
+                <v-icon
+                  :class="{ 'v-icon--active': content == 'mention' ? true : false }"
+                  color="primary"
+                  @click="changeContent('mention')"
+                  >mdi-at</v-icon
+                >
+                <v-icon
+                  :class="{ 'v-icon--active': content == 'notification' ? true : false }"
+                  color="primary"
+                  @click="changeContent('notification')"
+                  >mdi-bell</v-icon
+                >
+                <v-icon
+                  :class="{ 'v-icon--active': content == 'search' ? true : false }"
+                  color="primary"
+                  @click="changeContent('search')"
+                  >mdi-text-box-search</v-icon
+                >
               </v-card-actions>
             </v-card>
           </v-carousel-item>
@@ -46,15 +62,26 @@ export default Mobile.extend({
   mixins: [],
   props: {},
   data() {
-    return {};
+    return {
+      content: "home",
+    };
   },
-  methods: {},
+  methods: {
+    changeContent(v: string) {
+      this.content = v;
+    },
+  },
   created() {
     //
   },
   computed: {},
   watch: {},
-  components: {},
+  components: {
+    Home: () => import("@/views/sample2/contents/home.vue"),
+    Mention: () => import("@/views/sample2/contents/mention.vue"),
+    Notification: () => import("@/views/sample2/contents/notification.vue"),
+    Search: () => import("@/views/sample2/contents/search.vue"),
+  },
 });
 </script>
 
@@ -69,7 +96,7 @@ export default Mobile.extend({
 }
 .v-carousel ::v-deep .v-carousel__item {
   height: calc(100% - 50px) !important;
-} 
+}
 .v-carousel ::v-deep .v-carousel__controls {
   position: fixed;
   bottom: 0px;
